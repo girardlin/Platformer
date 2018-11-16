@@ -1,0 +1,658 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scripts/Main.cs" type="Script" id=1]
+[ext_resource path="res://assets/Forest2.ogg" type="AudioStream" id=2]
+[ext_resource path="res://scenes/games scenes/Cloud.tscn" type="PackedScene" id=3]
+[ext_resource path="res://tilesets/Platforms.tres" type="TileSet" id=4]
+[ext_resource path="res://scenes/character scenes/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/games scenes/Coin.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/games scenes/HUD.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/Hit_Hurt2.wav" type="AudioStream" id=8]
+
+[node name="Main" type="Node2D" index="0"]
+
+script = ExtResource( 1 )
+
+[node name="Background" type="ColorRect" parent="." index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -32.0
+margin_top = -248.0
+margin_right = 648.0
+margin_bottom = 176.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.508118, 0.867188, 0.825109, 1 )
+
+[node name="Music" type="AudioStreamPlayer2D" parent="." index="1"]
+
+stream = ExtResource( 2 )
+volume_db = -12.0
+pitch_scale = 1.0
+autoplay = true
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="Cloud5" parent="." index="2" instance=ExtResource( 3 )]
+
+position = Vector2( 275, -100 )
+scale = Vector2( 0.9, 0.9 )
+_sections_unfolded = [ "Region", "Transform", "Z Index" ]
+
+[node name="Cloud10" parent="." index="3" instance=ExtResource( 3 )]
+
+position = Vector2( 472, 136 )
+scale = Vector2( 0.9, 0.9 )
+_sections_unfolded = [ "Region", "Transform", "Z Index" ]
+
+[node name="Cloud4" parent="." index="4" instance=ExtResource( 3 )]
+
+position = Vector2( 360, -8 )
+scale = Vector2( 0.95, 0.95 )
+_sections_unfolded = [ "Region", "Transform" ]
+
+[node name="Cloud" parent="." index="5" instance=ExtResource( 3 )]
+
+position = Vector2( 144, 0 )
+scale = Vector2( 0.95, 0.95 )
+_sections_unfolded = [ "Region", "Transform" ]
+
+[node name="Cloud11" parent="." index="6" instance=ExtResource( 3 )]
+
+position = Vector2( 190, -170 )
+scale = Vector2( 0.95, 0.95 )
+_sections_unfolded = [ "Region", "Transform" ]
+
+[node name="Further Details" type="TileMap" parent="." index="7"]
+
+mode = 0
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( -786403, 26, 0, -655354, 26, 0, -589823, 29, 0, -589800, 13, 0, -589789, 30, 0, -327663, 27, 0, -327654, 31, 0, -327645, 29, 0, -262133, 29, 0, -196581, 29, 0, -65511, 26, 0, 65553, 30, 0, 196610, 14, 0, 262164, 27, 0, 262173, 29, 0, 327701, 29, 0, 327715, 31, 0 )
+_sections_unfolded = [ "Cell" ]
+
+[node name="Platforms" type="TileMap" parent="." index="8"]
+
+mode = 0
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( -589823, 42, 0, -589822, 45, 0, -589795, 42, 0, -589794, 45, 0, -458746, 6, 0, -458745, 7, 0, -327648, 6, 0, -327647, 2, 0, -327646, 3, 0, -327645, 4, 0, -327644, 7, 0, -262134, 6, 0, -262133, 43, 0, -262132, 7, 0, -262128, 42, 0, -262127, 43, 0, -262126, 44, 0, -262125, 45, 0, -262111, 24, 0, -196582, 0, 0, -196581, 1, 0, -196580, 7, 0, -131046, 23, 0, -65514, 6, 0, -65513, 7, 0, 131097, 6, 0, 131098, 7, 0, 327688, 6, 0, 327689, 4, 0, 327690, 8, 0, 327691, 46, 0, 327692, 47, 0, 327693, 48, 0, 327694, 49, 0, 327695, 50, 0, 327696, 51, 0, 327697, 22, 0, 327698, 3, 0, 327699, 4, 0, 327700, 2, 0, 327701, 1, 0, 327702, 8, 0, 393233, 24, 0, 393236, 9, 0, 458753, 0, 0, 458754, 1, 0, 458755, 2, 0, 458756, 3, 0, 458757, 4, 0, 458758, 5, 0, 524289, 23, 0, 524291, 24, 0 )
+_sections_unfolded = [ "Cell" ]
+
+[node name="Player" parent="." index="9" instance=ExtResource( 5 )]
+
+position = Vector2( 32, 32 )
+_sections_unfolded = [ "Transform" ]
+m_Gravity = 1300.0
+
+[node name="Camera2D" type="Camera2D" parent="Player" index="3"]
+
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit_left = -32
+limit_top = -210
+limit_right = 648
+limit_bottom = 176
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = false
+smoothing_speed = 100.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.25
+drag_margin_top = 0.4
+drag_margin_right = 0.25
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+_sections_unfolded = [ "Drag Margin", "Limit", "Offset", "Smoothing" ]
+
+[node name="Hidden Coin" parent="." index="10" instance=ExtResource( 6 )]
+
+position = Vector2( 288, 8 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Hidden Coin2" parent="." index="11" instance=ExtResource( 6 )]
+
+position = Vector2( 288, 8 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Hidden Coin3" parent="." index="12" instance=ExtResource( 6 )]
+
+position = Vector2( 288, 8 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Closer Details" type="TileMap" parent="." index="13"]
+
+mode = 0
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( -851935, 13, 0, -655359, 28, 0, -655331, 28, 0, -393184, 28, 0, -393182, 28, 0, -327670, 28, 0, -327664, 28, 0, -327662, 28, 0, -262117, 28, 0, -131050, 28, 0, -65536, 13, 0, -65520, 32, 0, 131073, 29, 0, 196637, 28, 0, 196642, 32, 0, 262153, 28, 0, 262162, 28, 0, 262173, 6, 0, 262174, 7, 0, 393220, 28, 0, 393249, 28, 0, 393250, 28, 0, 458785, 42, 0, 458786, 43, 0, 458787, 44, 0, 458788, 45, 0 )
+_sections_unfolded = [ "Cell" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Coin" parent="." index="14" instance=ExtResource( 6 )]
+
+position = Vector2( 104, 64 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin2" parent="." index="15" instance=ExtResource( 6 )]
+
+position = Vector2( 208, 40 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin3" parent="." index="16" instance=ExtResource( 6 )]
+
+position = Vector2( 224, 24 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin4" parent="." index="17" instance=ExtResource( 6 )]
+
+position = Vector2( 240, 40 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin5" parent="." index="18" instance=ExtResource( 6 )]
+
+position = Vector2( 384, 24 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin6" parent="." index="19" instance=ExtResource( 6 )]
+
+position = Vector2( 448, 16 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin7" parent="." index="20" instance=ExtResource( 6 )]
+
+position = Vector2( 520, 80 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin8" parent="." index="21" instance=ExtResource( 6 )]
+
+position = Vector2( 584, 88 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin9" parent="." index="22" instance=ExtResource( 6 )]
+
+position = Vector2( 584, 72 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin10" parent="." index="23" instance=ExtResource( 6 )]
+
+position = Vector2( 584, 104 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin11" parent="." index="24" instance=ExtResource( 6 )]
+
+position = Vector2( 392, -32 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin38" parent="." index="25" instance=ExtResource( 6 )]
+
+position = Vector2( 392, -72 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin12" parent="." index="26" instance=ExtResource( 6 )]
+
+position = Vector2( 400, -104 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin13" parent="." index="27" instance=ExtResource( 6 )]
+
+position = Vector2( 504, -40 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin41" parent="." index="28" instance=ExtResource( 6 )]
+
+position = Vector2( 448, -24 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin42" parent="." index="29" instance=ExtResource( 6 )]
+
+position = Vector2( 464, -24 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin21" parent="." index="30" instance=ExtResource( 6 )]
+
+position = Vector2( 472, -80 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin22" parent="." index="31" instance=ExtResource( 6 )]
+
+position = Vector2( 488, -104 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin23" parent="." index="32" instance=ExtResource( 6 )]
+
+position = Vector2( 600, -136 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin48" parent="." index="33" instance=ExtResource( 6 )]
+
+position = Vector2( 616, -152 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin39" parent="." index="34" instance=ExtResource( 6 )]
+
+position = Vector2( 336, 56 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin37" parent="." index="35" instance=ExtResource( 6 )]
+
+position = Vector2( 584, 56 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin40" parent="." index="36" instance=ExtResource( 6 )]
+
+position = Vector2( 584, 40 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin24" parent="." index="37" instance=ExtResource( 6 )]
+
+position = Vector2( 520, -88 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin28" parent="." index="38" instance=ExtResource( 6 )]
+
+position = Vector2( 480, -184 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin43" parent="." index="39" instance=ExtResource( 6 )]
+
+position = Vector2( 464, -176 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin44" parent="." index="40" instance=ExtResource( 6 )]
+
+position = Vector2( 496, -176 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin45" parent="." index="41" instance=ExtResource( 6 )]
+
+position = Vector2( 496, -160 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin46" parent="." index="42" instance=ExtResource( 6 )]
+
+position = Vector2( 464, -160 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin27" parent="." index="43" instance=ExtResource( 6 )]
+
+position = Vector2( 480, -168 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin25" parent="." index="44" instance=ExtResource( 6 )]
+
+position = Vector2( 480, -152 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin26" parent="." index="45" instance=ExtResource( 6 )]
+
+position = Vector2( 480, -152 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin16" parent="." index="46" instance=ExtResource( 6 )]
+
+position = Vector2( 336, -80 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin17" parent="." index="47" instance=ExtResource( 6 )]
+
+position = Vector2( 216, -112 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin29" parent="." index="48" instance=ExtResource( 6 )]
+
+position = Vector2( 200, -88 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin47" parent="." index="49" instance=ExtResource( 6 )]
+
+position = Vector2( 264, -88 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin30" parent="." index="50" instance=ExtResource( 6 )]
+
+position = Vector2( 152, -104 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin31" parent="." index="51" instance=ExtResource( 6 )]
+
+position = Vector2( 136, -120 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin32" parent="." index="52" instance=ExtResource( 6 )]
+
+position = Vector2( 32, -160 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin33" parent="." index="53" instance=ExtResource( 6 )]
+
+position = Vector2( 32, -176 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin34" parent="." index="54" instance=ExtResource( 6 )]
+
+position = Vector2( 32, -192 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin35" parent="." index="55" instance=ExtResource( 6 )]
+
+position = Vector2( 48, -176 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin36" parent="." index="56" instance=ExtResource( 6 )]
+
+position = Vector2( 16, -176 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin18" parent="." index="57" instance=ExtResource( 6 )]
+
+position = Vector2( 248, -112 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin19" parent="." index="58" instance=ExtResource( 6 )]
+
+position = Vector2( 232, -120 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin58" parent="." index="59" instance=ExtResource( 6 )]
+
+position = Vector2( 232, -136 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin49" parent="." index="60" instance=ExtResource( 6 )]
+
+position = Vector2( 232, -56 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin53" parent="." index="61" instance=ExtResource( 6 )]
+
+position = Vector2( 232, -40 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin50" parent="." index="62" instance=ExtResource( 6 )]
+
+position = Vector2( 232, -72 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin51" parent="." index="63" instance=ExtResource( 6 )]
+
+position = Vector2( 232, -104 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin52" parent="." index="64" instance=ExtResource( 6 )]
+
+position = Vector2( 232, -88 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin20" parent="." index="65" instance=ExtResource( 6 )]
+
+position = Vector2( 288, -88 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin54" parent="." index="66" instance=ExtResource( 6 )]
+
+position = Vector2( 288, -104 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin55" parent="." index="67" instance=ExtResource( 6 )]
+
+position = Vector2( 288, -120 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin56" parent="." index="68" instance=ExtResource( 6 )]
+
+position = Vector2( 288, -136 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin14" parent="." index="69" instance=ExtResource( 6 )]
+
+position = Vector2( 512, -24 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin57" parent="." index="70" instance=ExtResource( 6 )]
+
+position = Vector2( 496, -72 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Coin15" parent="." index="71" instance=ExtResource( 6 )]
+
+position = Vector2( 496, -56 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Cloud3" parent="." index="72" instance=ExtResource( 3 )]
+
+position = Vector2( 512, 24 )
+scale = Vector2( 1.3, 1.3 )
+_sections_unfolded = [ "Region", "Transform" ]
+m_FloatSpeed = 3.0
+
+[node name="Cloud9" parent="." index="73" instance=ExtResource( 3 )]
+
+position = Vector2( 256, -40 )
+scale = Vector2( 1.3, 1.3 )
+_sections_unfolded = [ "Region", "Transform" ]
+m_FloatSpeed = 3.0
+
+[node name="Cloud2" parent="." index="74" instance=ExtResource( 3 )]
+
+position = Vector2( 272, 112 )
+scale = Vector2( 1.2, 1.2 )
+_sections_unfolded = [ "Region", "Transform" ]
+
+[node name="Cloud6" parent="." index="75" instance=ExtResource( 3 )]
+
+position = Vector2( 56, 48 )
+scale = Vector2( 1.2, 1.2 )
+_sections_unfolded = [ "Region", "Transform" ]
+
+[node name="Cloud7" parent="." index="76" instance=ExtResource( 3 )]
+
+position = Vector2( 96, -104 )
+scale = Vector2( 1.2, 1.2 )
+_sections_unfolded = [ "Region", "Transform" ]
+
+[node name="Cloud12" parent="." index="77" instance=ExtResource( 3 )]
+
+position = Vector2( 488, -168 )
+scale = Vector2( 1.2, 1.2 )
+_sections_unfolded = [ "Region", "Transform" ]
+
+[node name="Cloud8" parent="." index="78" instance=ExtResource( 3 )]
+
+position = Vector2( 384, -120 )
+_sections_unfolded = [ "Region", "Transform" ]
+
+[node name="HUD" parent="." index="79" instance=ExtResource( 7 )]
+
+[node name="Hurt" type="AudioStreamPlayer2D" parent="." index="80"]
+
+stream = ExtResource( 8 )
+volume_db = -15.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[connection signal="Fell" from="Player" to="." method="LivesDown"]
+
+[connection signal="Hit" from="Hidden Coin" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Hidden Coin2" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Hidden Coin3" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin2" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin3" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin4" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin5" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin6" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin7" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin8" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin9" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin10" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin11" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin38" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin12" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin13" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin41" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin42" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin21" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin22" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin23" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin48" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin39" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin37" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin40" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin24" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin28" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin43" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin44" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin45" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin46" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin27" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin25" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin26" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin16" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin17" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin29" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin47" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin30" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin31" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin32" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin33" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin34" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin35" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin36" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin18" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin19" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin58" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin49" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin53" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin50" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin51" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin52" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin20" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin54" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin55" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin56" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin14" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin57" to="." method="ScoreUp"]
+
+[connection signal="Hit" from="Coin15" to="." method="ScoreUp"]
+
+

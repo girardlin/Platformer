@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/Cloud.cs" type="Script" id=1]
+[ext_resource path="res://assets/plattoon-remix_0.png" type="Texture" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 10.0
+height = 20.0
+
+[node name="Cloud" type="KinematicBody2D"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Region" ]
+m_FloatSpeed = 2.0
+m_XLimit = 700.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+
+shape = SubResource( 1 )
+disabled = true
+
+[node name="Sprite" type="Sprite" parent="." index="1"]
+
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 256, 0, 64, 32 )
+_sections_unfolded = [ "Region" ]
+
+
