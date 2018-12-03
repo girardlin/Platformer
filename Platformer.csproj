@@ -49,11 +49,16 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enemy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="scripts\Cloud.cs" />
     <Compile Include="scripts\Coin.cs" />
+    <Compile Include="scripts\DatabaseParser.cs" />
     <Compile Include="scripts\HUD.cs" />
+    <Compile Include="scripts\Inventory.cs" />
+    <Compile Include="scripts\Item.cs" />
     <Compile Include="scripts\Main.cs" />
+    <Compile Include="scripts\PlayeInventory.cs" />
     <Compile Include="scripts\Player.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

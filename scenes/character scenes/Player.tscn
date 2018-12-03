@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/Player.cs" type="Script" id=1]
 [ext_resource path="res://assets/Player.png" type="Texture" id=2]
@@ -6,7 +6,7 @@
 [sub_resource type="CapsuleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 4.05536
+radius = 3.84481
 height = 4.69679
 
 [sub_resource type="Animation" id=2]
@@ -49,7 +49,37 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=4]
 
-resource_name = "Running"
+resource_name = "Punching"
+length = 4.0
+loop = false
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 10, 11, 12, 13, 14 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PunchArea/PunchShape:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=5]
+
 length = 6.0
 loop = true
 step = 1.0
@@ -66,6 +96,11 @@ tracks/0/keys = {
 "values": [ 5, 6, 7, 5, 19, 18 ]
 }
 
+[sub_resource type="RectangleShape2D" id=6]
+
+custom_solver_bias = 0.0
+extents = Vector2( 3.55055, 3.16426 )
+
 [node name="Player" type="KinematicBody2D"]
 
 input_pickable = false
@@ -73,6 +108,7 @@ collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "collision" ]
 m_MovementSpeed = 110.0
 m_JumpSpeed = -425.0
 m_Gravity = 1200.0
@@ -82,19 +118,22 @@ m_FallReset = true
 m_FallDistanceBeforeReset = 300.0
 m_ResetLocationX = 32.0
 m_ResetLocationY = 32.0
+m_Damage = 2
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
 texture = ExtResource( 2 )
 vframes = 5
 hframes = 5
+frame = 10
 _sections_unfolded = [ "Animation" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
-position = Vector2( 0.509792, 0.37257 )
+position = Vector2( 0.111623, 0.37257 )
+scale = Vector2( 0.941829, 1 )
 shape = SubResource( 1 )
-_sections_unfolded = [ "Transform", "Z Index" ]
+_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 
@@ -105,8 +144,25 @@ playback_default_blend_time = 0.0
 playback_speed = 1.0
 anims/Idle = SubResource( 2 )
 anims/Jumping = SubResource( 3 )
-anims/Running = SubResource( 4 )
+anims/Punching = SubResource( 4 )
+anims/Running = SubResource( 5 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
+
+[node name="PunchArea" type="KinematicBody2D" parent="." index="3"]
+
+input_pickable = false
+collision_layer = 2
+collision_mask = 4
+collision/safe_margin = 0.08
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform" ]
+
+[node name="PunchShape" type="CollisionShape2D" parent="PunchArea" index="0"]
+
+position = Vector2( 7.56515, 1.39179 )
+scale = Vector2( 0.794392, 1 )
+shape = SubResource( 6 )
+disabled = true
+_sections_unfolded = [ "Transform" ]
 
 

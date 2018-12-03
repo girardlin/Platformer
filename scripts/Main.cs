@@ -12,7 +12,7 @@ public class Main : Node2D
     {
         m_HUD = (HUD) GetNode("HUD");
         m_HUD.UpdateScore(0);
-        m_Hurt = (AudioStreamPlayer2D) GetNode("Hurt");
+        m_Hurt = (AudioStreamPlayer2D) GetNode("Sounds/Hurt");
     }
     
     public void ScoreUp()

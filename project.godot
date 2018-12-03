@@ -20,6 +20,20 @@ window/size/width=256
 window/size/height=144
 window/stretch/mode="viewport"
 
+[input]
+
+Punch=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":90,"unicode":0,"echo":false,"script":null)
+ ]
+
+[layer_names]
+
+2d_render/layer_1="Player"
+2d_physics/layer_1="Player"
+2d_render/layer_2="Weapon"
+2d_physics/layer_2="Weapon"
+2d_render/layer_3="Enemy"
+2d_physics/layer_3="Enemy"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

@@ -3,14 +3,15 @@ using System;
 
 public class Player : KinematicBody2D
 {
-
     public enum AnimationState
     {
         Idle,
         Running,
         Jumping,
+        Punching,
         Neutral
     };
+
     [Export] public float m_MovementSpeed = 105f;
     [Export] public float m_JumpSpeed = -410;
     [Export] public float m_Gravity = 1200;
@@ -20,20 +21,26 @@ public class Player : KinematicBody2D
     [Export] public float m_FallDistanceBeforeReset = 300f;
     [Export] public float m_ResetLocationX = 32;
     [Export] public float m_ResetLocationY = 32;
+    [Export] public int m_Damage = 2;
     
     [Signal] public delegate void Fell();
+    [Signal] public delegate void Damage();
 
     private bool m_Jumping = false;
     private Vector2 m_Velocity = new Vector2();
     private AnimationState m_AnimState;
     private AnimationState m_LastAnimState;
     private bool m_LastVelocityXPositive;
-    
 
+    CollisionShape2D m_PunchShape;
+    
     public override void _Ready()
     {
         m_LastAnimState = AnimationState.Neutral;
         m_AnimState = AnimationState.Idle;
+
+        m_PunchShape = (CollisionShape2D) GetNode("PunchArea/PunchShape");
+        m_PunchShape.Disabled = true;
     }
 
     public void ProcessInputs()
@@ -44,6 +51,7 @@ public class Player : KinematicBody2D
         bool right = Input.IsActionPressed("ui_right");
         bool left = Input.IsActionPressed("ui_left");
         bool jump = Input.IsActionPressed("ui_select");
+        bool punch = Input.IsActionPressed("Punch");
 
         if (jump && IsOnFloor())
         {
@@ -58,7 +66,6 @@ public class Player : KinematicBody2D
         {
             m_Velocity.x -= m_MovementSpeed;
         }
-
 
         //states for animation player to handle
         //determines velocity and chooses the appropriate animation state
@@ -81,7 +88,15 @@ public class Player : KinematicBody2D
         }
         else
         {
-            m_AnimState = AnimationState.Idle;
+            if(punch)
+            {
+                m_AnimState = AnimationState.Punching;
+            }
+            else
+            {
+                m_PunchShape.Disabled = true;
+                m_AnimState = AnimationState.Idle;
+            }
         }
 
         if(m_AnimState == m_LastAnimState)
@@ -102,10 +117,12 @@ public class Player : KinematicBody2D
         if(m_LastVelocityXPositive == false)
         {
             m_Sprite.FlipH = true;
+            m_PunchShape.Position = new Vector2(-1 * Math.Abs(m_PunchShape.Position.x), m_PunchShape.Position.y);
         }
         else
         {
             m_Sprite.FlipH = false;
+            m_PunchShape.Position = new Vector2(1 * Math.Abs(m_PunchShape.Position.x), m_PunchShape.Position.y);
         }
 
         //determine animation to play
@@ -122,6 +139,10 @@ public class Player : KinematicBody2D
         else if(m_AnimState == AnimationState.Jumping)
         {
             m_AnimPlayer.Play("Jumping", -1, 1, false);
+        } 
+        else if(m_AnimState == AnimationState.Punching)
+        {
+            m_AnimPlayer.Play("Punching", -1, 13, false);
         }
     }
     
@@ -148,5 +169,10 @@ public class Player : KinematicBody2D
             Position = new Vector2(m_ResetLocationX, m_ResetLocationY);
             m_Velocity.y = 0;
         }
+    }
+
+    public void DamageEnemy()
+    {
+        EmitSignal("Damage");
     }
 }
