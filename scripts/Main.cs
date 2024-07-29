@@ -8,6 +8,8 @@ public class Main : Node2D
     private int m_Lives = 3;
     public AudioStreamPlayer2D m_Hurt;
     
+	//bruh
+	
     public override void _Ready()
     {
         m_HUD = (HUD) GetNode("HUD");
